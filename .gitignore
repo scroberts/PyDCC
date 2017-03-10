@@ -1,0 +1,16 @@
+*.pyc
+/Secrets/Secrets.py
+
+/Config/Config.py
+
+/Reports/*
+!/Reports/README.md
+
+/Cache DCC/*
+!/Cache DCC/README.md
+
+/Cache TraceTree/*
+!/Cache TraceTree/README.md
+
+/User Files/*
+!/User Files/README.md
