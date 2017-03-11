@@ -2,6 +2,8 @@
 
 This is a set of Python tools for automating tasks on Docushare.
 
+The [Python Procedure Manual](https://docushare.tmt.org/docushare/dsweb/Get/Document-50424/Python%20Docushare%20Procedure_REL02%20FINAL.pdf) is on TMT Docushare
+
 # Upgrading from previous GitHub repository
 For users converting from using the previous GitHub projects, the following steps will 
 be needed to use this new repository.
@@ -23,4 +25,4 @@ secrets.py file (if you had one)
 
 
 ## PYTHONPATH
-* Set the PYTHONPATH to point to the PyDCC/Config, PyDCC/Secrets, and PyDCC/Library directories
+* Set the PYTHONPATH to point to the PyDCC/Config, PyDCC/Secrets, and PyDCC/Library directories.  See Python
