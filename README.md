@@ -26,4 +26,5 @@ secrets.py file (if you had one)
 
 
 ## PYTHONPATH
-* Set the PYTHONPATH to point to the PyDCC/Config, PyDCC/Secrets, and PyDCC/Library directories.  See Python
+* Set the PYTHONPATH to point to the PyDCC/Config, PyDCC/Secrets, and PyDCC/Library directories.  
+See the Python Procedure Manual (link above) for details of how to do this.
