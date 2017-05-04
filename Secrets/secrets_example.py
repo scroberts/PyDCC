@@ -21,4 +21,4 @@ TT = {'login':'USERNAME', 'password':'PASSWORD'}
 ## Enter the password set names from above that you want to use to login here for DCC, 
 ## TT (TraceTree), and the DCC test site. For example:
 
-pw = {'DCC':DCC_adm, 'TT':TT, 'DCCTest':DCC_test}
+pw = {'DCC':DCC_reg, 'TT':TT, 'DCCTest':DCC_test}
