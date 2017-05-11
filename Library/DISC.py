@@ -7,7 +7,7 @@ import requests
 import string
 from bs4 import BeautifulSoup
 import openpyxl
-from openpyxl.styles import Font, Style, Alignment
+from openpyxl.styles import Font, Alignment
 from openpyxl.styles.colors import BLUE
 from openpyxl import load_workbook
 from datetime import datetime
