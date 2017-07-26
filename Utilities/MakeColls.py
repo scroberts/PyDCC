@@ -59,20 +59,21 @@ top_level = [['01 __NAME_Information and Logistics',[]],
     ['07 __NAME Response to Review Board Report',[]]]
     
     
-cid_set = [['00. (__NAME) Configuration Index Document (CID)',[]],
-    ['01. (__NAME) Level 1 Requirements',[]],
-    ['02. (__NAME) Level 2 and 3 Requirements and Specifications',[]],
-    ['03. (__NAME) Interfaces',[]],
-    ['04. (__NAME) Design Description',[]],
-    ['05. (__NAME) Detailed Design',[]],
-    ['06. (__NAME) Models',[]],
-    ['07. (__NAME) Analysis',[]],
-    ['08. (__NAME) Safety',[]],
-    ['09. (__NAME) Reliability',[]],
-    ['10. (__NAME) Manufacturing',[]],
-    ['11. (__NAME) Assembly and Integration',[]],
-    ['12. (__NAME) Operations and Maintenance Plan',[]],
-    ['13. (__NAME) Verification',[]]]
+cid_set = [['00. (__NAME) Configuration Index Document',[]],
+    ['01. (__NAME) Requirements',[]],
+    ['02. (__NAME) Interfaces',[]],
+    ['03. (__NAME) Design Description',[]],
+    ['04. (__NAME) Detailed Design',[]],
+    ['05. (__NAME) Design Analysis and Modeling - MODELS',[]],
+    ['06. (__NAME) Design Analysis and Modeling - REPORTS',[]],
+    ['07. (__NAME) Safety',[]],
+    ['08. (__NAME) Reliability',[]],
+    ['09. (__NAME) Manufacturing',[]],
+    ['10. (__NAME) Assembly and Integration',[]],
+    ['11. (__NAME) Operations and Maintenance',[]],
+    ['12. (__NAME) Verification',[]],
+    ['13. (__NAME) Quality',[]],
+    ['14. (__NAME) Management',[]]]
     
     
 sub_test_set = [['__NAMEtest coll 3',[]]]
@@ -93,7 +94,23 @@ def createReviewColls(s,handleParent, collNames, revName, userName):
 def reviewColls():
     
     #variable set to determine what will be created when making collections for reviews
-    set = top_level
+    
+    ans = ''
+    while (True):
+        print('Create Collections for Design Review (enter D) or CID (enter C)?',end="")
+        ans = input()
+        if ans.upper() == 'D':
+            set = top_level
+            print('Will create collections for Design Review')
+            break
+        elif ans.upper() == 'C':
+            print('Will create collections for CID')
+            set = cid_set
+            break
+        else:
+            Print("Enter 'D' or 'C'")
+            
+
     #creates sets that define the user choice to cover miscellaneous cases
     prod = ['prod', 'production', 'p', ' ']
     tes = ['test', 'tes', 't']
@@ -134,15 +151,14 @@ def reviewColls():
         parent = 'Collection-' + col
         #uses function prop_get to display collection information
         fd = DCC.prop_get(s, parent , InfoSet = 'CollData', Print = True)
-        print("Please enter the name of this new collection:")
-        print("*** Specific input is case sensitive ***")
-        print(" ")
+        print("Please enter the Subsystem or Design Review Name to associate with this new collection (Example 'CID IRIS' or 'STR FDRP3':")
+#         print("*** Specific input is case sensitive ***")
+#         print(" ")
         name = input()
         # double checks user to make sure that they would like to create this collection
-        print("Are you sure that you want to create: " + name + " under " + parent)
-        print("Valid Inputs are as follows: Yes, Y, No, N")
         print("*** Input is not case sensitive ***")
-        print(" ")
+        print("Are you sure that you want to create: " + name + " under " + parent)
+        print("Valid Inputs are as follows: Yes, Y, No, N:")
         ans = input().lower()
         # checks that user input is correct, if the answer is a valid form of yes
         # then the collection will be made and the user will break from the loop

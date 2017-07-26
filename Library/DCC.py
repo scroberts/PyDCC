@@ -997,7 +997,7 @@ if __name__ == '__main__':
 #    test_makecoll()
 #     test_getall()
 #   test_ampersand()
-    s = login(Site = 'Production') 
+    s = login(url=CF.dcctest_url + CF.dcc_login, Site = 'Test') 
 #     ulist = user_search(s, email = 'sroberts@tmt.org')
 #     print(ulist)
     
