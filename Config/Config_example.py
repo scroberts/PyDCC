@@ -13,7 +13,7 @@ reportfilepath = r'ADD_REPORT_PATH_LOCATION_HERE'
 tracetreefilepath = r'ADD_TRACETREE_CACHE_PATH_HERE'
 
 # DocMod Module Definitions
-docs_url_base = 'https://trace-tree.tmt.org/TMT_Requirements/Documents_Register/Documents_Register/'
+docs_url_base = 'https://tracetree.tmt.org/TMT_Requirements/Documents_Register/Documents_Register/'
 docs_url_main = docs_url_base + 'index.html'
 
 docmod_url_list_file = 'document_module_url_list.json'
