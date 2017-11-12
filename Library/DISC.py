@@ -196,7 +196,7 @@ def get_discussion_rowcol(url, htmlfile, xlfile, ssrow, sscol):
     webfile = open(CF.dccfilepath + htmlfile,'wb')
     for chunk in res.iter_content(100000):
         webfile.write(chunk)
-    webfile.close
+    webfile.close() #Really close the file !!!
 
     # Get the HTML into the Beautiful Soup object
     dcc=open(CF.dccfilepath + htmlfile,'r',encoding='utf-8',errors='ignore').read()
