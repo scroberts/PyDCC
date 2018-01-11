@@ -173,9 +173,14 @@ for dcc_doc in pub_list:
                 
             if not docmod_docnum in fd['tmtnum']:
                 print('*** WARNING: Docushare document number does NOT match:', docmod_docnum)
-                question = 'Update TMT Document Number to: ' + docmod_docnum + ' (Y/N)? '
+                if '(' in fd['tmtnum']:
+                    ss = ' (' + fd['tmtnum']. split('(')[1]
+                else:
+                    ss = ''
+                question = 'Update TMT Document Number to: ' + docmod_docnum + ss + ' (Y/N)? '
                 if flag_update and MyUtil.get_yn(question):
-                    DCC.set_metadata(s,fd['handle'], Summary = docmod_docnum)            
+                    # get substring from fd['tmtnum'] that is enclosed in parenthesis
+                    DCC.set_metadata(s,fd['handle'], Summary = docmod_docnum + ss)            
             
         else: # there's no dcc_doc in the document module
             DCC.print_doc_basic(fd)
