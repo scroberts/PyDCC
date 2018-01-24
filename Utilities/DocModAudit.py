@@ -141,7 +141,7 @@ for dcc_doc in pub_list:
                                 
             
             # if ICD then combine docmod title and short title
-            if ('.ICD.' in docmod_no and not 'Drawing' in docmod_type) or ('DRD' in docmod_short):
+            if ('.ICD.' in docmod_no and not 'Drawing' in docmod_type) or ('DRD' in docmod_short) or ('OCDD' in docmod_short) or ('CID' in docmod_short) or ('ADD' in docmod_short)  or ('VCRM' in docmod_short):
                 docmod_title = docmod_short.strip() + ' ---- ' + docmod_title.strip()
             
             if not fd['title'] == docmod_title:
@@ -166,10 +166,10 @@ for dcc_doc in pub_list:
                 print('\tDCC Document Number: ', fd['tmtnum'])
                 print('\tDocMod Revision Number: ', docmod_rev)     
                 
-            docmod_docnum = docmod_no + '.' + docmod_rev
+            docmod_docnum = docmod_no.strip() + '.' + docmod_rev.strip()
             
             if docmod_cadno:
-                docmod_docnum = docmod_docnum + '  [PDM CAD #:' + docmod_cadno + ' Rev ' + docmod_cadrev + ']'
+                docmod_docnum = docmod_docnum.strip() + '  [PDM CAD #:' + docmod_cadno.strip() + ' Rev ' + docmod_cadrev.strip() + ']'
                 
             if not docmod_docnum in fd['tmtnum']:
                 print('*** WARNING: Docushare document number does NOT match:', docmod_docnum)
