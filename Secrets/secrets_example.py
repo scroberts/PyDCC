@@ -11,8 +11,8 @@
 DCC_reg = {'login':'USERNAME', 'password':'PASSWORD'}
 DCC_adm = {'login':'USERNAME', 'password':'PASSWORD'}
 ## DCC Test site Passwords
-# This is the general password used for TraceTree
-DCC_test = {'login':'TMTGUEST', 'password':'TMT2017DOORS!'}
+# This is the general password used for DCC Test
+DCC_test = {'login':'USERNAME', 'password':'PASSWORD'}
 
 # TraceTree Passwords
 ## Enter your TraceTree login credentials here
