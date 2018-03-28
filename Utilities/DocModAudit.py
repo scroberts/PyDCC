@@ -22,7 +22,7 @@ import MyUtil
 # attributes by using '_UNASSIGNED' as the matching criteria.
 
 # Define allowable short titles
-short_titles = ['DRD', 'OCDD', 'RID', 'CID', 'ADD', 'CM', 'SDD', 'DDD', 'FMEA', 'HARA', 'VCRM']
+short_titles = ['DRD', 'OCDD', 'RID', 'CID', 'ADD', 'CM', 'SDD', 'DDD', 'FMEA', 'HARA', 'VCRM', 'NxN']
 
 found_flag = False
 if os.path.isfile(CF.tracetreefilepath + CF.docmod_dict_file):
