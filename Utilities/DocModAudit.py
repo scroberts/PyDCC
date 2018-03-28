@@ -21,6 +21,9 @@ import MyUtil
 # In setting search criteria it is possible to look for undefined
 # attributes by using '_UNASSIGNED' as the matching criteria.
 
+# Define allowable short titles
+short_titles = ['DRD', 'OCDD', 'RID', 'CID', 'ADD', 'CM', 'SDD', 'DDD', 'FMEA', 'HARA', 'VCRM']
+
 found_flag = False
 if os.path.isfile(CF.tracetreefilepath + CF.docmod_dict_file):
     print('Found existing DocMod file: ', CF.docmod_dict_file)
@@ -141,7 +144,7 @@ for dcc_doc in pub_list:
                                 
             
             # if ICD then combine docmod title and short title
-            if ('.ICD.' in docmod_no and not 'Drawing' in docmod_type) or ('DRD' in docmod_short) or ('OCDD' in docmod_short) or ('RID' in docmod_short) or ('CID' in docmod_short) or ('ADD' in docmod_short)  or ('CM' in docmod_short) or ('SDD' in docmod_short) or ('DDD' in docmod_short) or ('FMEA' in docmod_short) or ('HARA' in docmod_short) or ('VCRM' in docmod_short):
+            if ('.ICD.' in docmod_no and not 'Drawing' in docmod_type) or any(x in docmod_short for x in short_titles):
                 docmod_title = docmod_short.strip() + ' ---- ' + docmod_title.strip()
             
             if not fd['title'] == docmod_title:
