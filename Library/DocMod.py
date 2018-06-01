@@ -95,6 +95,10 @@ def get_tracetree_docmod_dict(url):
     file = open(CF.tracetreefilepath + url,'r',encoding='latin-1').read()
     dom = BeautifulSoup(file, "html.parser")
     dict = {}
+    # get the REQUIREMENT TEXT:
+    dict['REQUIREMENT TEXT:'] = dom.hr.br.br.get_text().strip()
+    
+    # now get the attribute values
     for child in dom.table.children:  
         try:
             field = child.td.string.strip()  
@@ -179,7 +183,7 @@ def print_report(docmodreport, doc):
             
             
 if __name__ == '__main__':
-    dict = get_tracetree_docmod_dict('1796.html')
+    dict = get_tracetree_docmod_dict('7639.html')
     print(dict)
     
 

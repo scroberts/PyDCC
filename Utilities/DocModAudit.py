@@ -50,7 +50,8 @@ reflist['ICD'] = docinfo
 
 # construct document module report list
 docmodreport = []
-docmodreport.append('dccDocTitle')
+docmodreport.append('REQUIREMENT TEXT:')
+#docmodreport.append('dccDocTitle')
 docmodreport.append('dccShortTitle')
 docmodreport.append('dccDocNo')
 docmodreport.append('dccDocRev')
@@ -118,7 +119,7 @@ for dcc_doc in pub_list:
         print('\n############## ', dcc_doc, '##############')
         if dcc_doc in docmodlist:
         
-            docmod_title = docmatch[dcc_doc].get('dccDocTitle', 'No Attribute Value Assigned')
+            docmod_title = docmatch[dcc_doc].get('REQUIREMENT TEXT:', 'No Attribute Value Assigned')
             docmod_type = docmatch[dcc_doc].get('DocType', 'No Attribute Value Assigned')
             docmod_short = docmatch[dcc_doc].get('dccShortTitle', 'No Attribute Value Assigned')
             docmod_no = docmatch[dcc_doc].get('dccDocNo', 'No Attribute Value Assigned')
