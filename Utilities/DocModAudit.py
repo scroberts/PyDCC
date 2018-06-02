@@ -51,7 +51,6 @@ reflist['ICD'] = docinfo
 # construct document module report list
 docmodreport = []
 docmodreport.append('REQUIREMENT TEXT:')
-#docmodreport.append('dccDocTitle')
 docmodreport.append('dccShortTitle')
 docmodreport.append('dccDocNo')
 docmodreport.append('dccDocRev')

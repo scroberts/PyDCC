@@ -96,7 +96,10 @@ def get_tracetree_docmod_dict(url):
     dom = BeautifulSoup(file, "html.parser")
     dict = {}
     # get the REQUIREMENT TEXT:
-    dict['REQUIREMENT TEXT:'] = dom.hr.br.br.get_text().strip()
+    try:
+        dict['REQUIREMENT TEXT:'] = dom.hr.br.br.get_text().strip()
+    except Exception:
+        pass
     
     # now get the attribute values
     for child in dom.table.children:  

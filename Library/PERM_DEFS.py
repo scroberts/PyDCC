@@ -28,7 +28,7 @@ debug = False
 #           Defined Actions are: 'Add','Change','Remove', or 'Message'
 #               'Add' requires 'Handle' and 'Perms' to be defined
 #               'Change' requires 'Perms' to be defined
-#               'Remove' down no require additional arguments
+#               'Remove' does not require additional arguments
 #               'Message' requires 'Message' to be defined
 # 
 # crit_act_set = {'obj_sel' : parse_dict, 
@@ -163,8 +163,6 @@ usr_phillips = 'User-145'
 
 REMOVE_INACTIVE =   [remove_user(usr_szeto), 
                     remove_user(usr_taylor), 
-                    remove_user(usr_hubin),
-                    remove_user(usr_erickson),
                     remove_user(usr_britton),
                     remove_user(usr_augusto),
                     remove_user(usr_miska),
@@ -224,7 +222,6 @@ PERMACT_REMOVE_grp_usr_perm_none = dict_crit_act(perm_none, REMOVE)
 PERMACT_CHANGE_W_to_RW = dict_crit_act(perm_write_only, CHANGE_RW)
 
 # Add SE readership all if not already there
-
 PERMACT_ADD_se_readership = dict_crit_act(no_se_readership, add_R_grp_se_readership)
 
 # Add STR Managers all if not already there
@@ -254,6 +251,61 @@ SET_SE_READERSHIP = {
                         PERMACT_REMOVE_grp_usr_perm_none,
                         remove_inactive,
                         remove_user(grp_all_noEAR)]} 
+
+# HIA Staff_AO_CAN_(EAR) (Group-685, DocuShare)
+# NFIRAOS FDR Reveiw Team_OBSERVERS (Group-1004, DocuShare)
+# NFIRAOS FDR Review Team_EXTERNAL (Group-1003, DocuShare)
+# NFIRAOS FDR Review Team_INTERNAL (Group-1002, DocuShare)
+grp_NFIRAOS_ext = 'Group-1003'
+grp_NFIRAOS_obs = 'Group-1004'
+grp_NFIRAOS_int = 'Group-1002'
+grp_HIA_AO_Staff = 'Group-685'
+
+no_NFDRext_readership = {'NOT' : dic_handle_eq( grp_NFIRAOS_ext )}
+no_NFDRobs_readership = {'NOT' : dic_handle_eq( grp_NFIRAOS_obs )}
+no_NFDRint_readership = {'NOT' : dic_handle_eq( grp_NFIRAOS_int )}
+
+# Add SE readership all if not already there
+add_R_grp_NFDRext_readership = {'Action' : 'Add', 'Handle' : grp_NFIRAOS_ext, 'Perms' : {'Read' : True}}
+add_R_grp_NFDRobs_readership = {'Action' : 'Add', 'Handle' : grp_NFIRAOS_obs, 'Perms' : {'Read' : True}}
+add_R_grp_NFDRint_readership = {'Action' : 'Add', 'Handle' : grp_NFIRAOS_int, 'Perms' : {'Read' : True}}
+
+PERMACT_ADD_NFIRAOSFDRext_readership = dict_crit_act(no_NFDRext_readership, add_R_grp_NFDRext_readership)
+PERMACT_ADD_NFIRAOSFDRobs_readership = dict_crit_act(no_NFDRobs_readership, add_R_grp_NFDRobs_readership)
+PERMACT_ADD_NFIRAOSFDRint_readership = dict_crit_act(no_NFDRobs_readership, add_R_grp_NFDRint_readership)
+
+SET_ADDPANEL_NFIRAOS_FDR = {
+        'ObjSel'    : { 'Criteria' : docORcol},
+        'ObjAct'    : [],
+        'PermAct'   : [ PERMACT_ADD_NFIRAOSFDRext_readership,
+                        PERMACT_ADD_NFIRAOSFDRobs_readership,
+                        PERMACT_ADD_NFIRAOSFDRint_readership]} 
+                        
+SET_REMPANEL_NFIRAOS_FDR = {
+        'ObjSel'    : { 'Criteria' : docORcol},
+        'ObjAct'    : [],
+        'PermAct'   : [ remove_user(grp_NFIRAOS_ext),
+                        remove_user(grp_NFIRAOS_obs),
+                        remove_user(grp_NFIRAOS_int)]} 
+
+SET_FIXEAR_NFIRAOS_FDR = {
+        'ObjSel'    : { 'Criteria' : docORcol},
+        'ObjAct'    : [],
+        'PermSel'   : { 'Criteria' : [check_user_perms(grp_all_noEAR,read_true)]},
+        'PermAct'   : [ PERMACT_ADD_se_readership,
+                        PERMACT_CHANGE_se_readership_RO,
+                        PERMACT_REMOVE_ro_users,
+                        PERMACT_REMOVE_ro_groups_except_se_reader,
+                        PERMACT_REMOVE_grp_usr_perm_W_or_M_no_R,
+                        PERMACT_REMOVE_grp_usr_perm_none,
+                        remove_inactive,
+                        remove_user(grp_all_noEAR)]}                     
+                        
+SET_FIX_NFIRAOS_FDR = {
+        'ObjSel'    : { 'Criteria' : docORcol},
+        'ObjAct'    : [],
+        'PermSel'   : {'Criteria' : [check_user_perms(grp_HIA_AO_Staff,RW_true)]},
+        'PermAct'   : []} 
                         
 SET_LGSF = {
         'ObjSel'    : { 'Criteria' : docORcol},
