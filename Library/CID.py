@@ -5,7 +5,7 @@ import pprint
 import json
 from datetime import datetime
 import openpyxl
-from openpyxl.styles import Font, Style, Alignment
+from openpyxl.styles import Font, Alignment
 from openpyxl.styles.colors import BLUE
 
 # my modules
