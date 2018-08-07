@@ -70,8 +70,7 @@ top_level = [['01 __NAME_Information and Logistics',[]],
     ['07 __NAME Response to Review Board Report',[]]]
     
     
-cid_set = [['00. (__NAME) Configuration Index Document',[]],
-    ['01. (__NAME) Requirements',[]],
+cid_set = [['01. (__NAME) Requirements',[]],
     ['02. (__NAME) Interfaces',[]],
     ['03. (__NAME) Design Description',[]],
     ['04. (__NAME) Detailed Design',[]],
