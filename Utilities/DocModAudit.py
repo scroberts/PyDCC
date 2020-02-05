@@ -183,7 +183,7 @@ for dcc_doc in pub_list:
                 question = 'Update TMT Document Number to: ' + docmod_docnum + ss + ' (Y/N)? '
                 if flag_update and MyUtil.get_yn(question):
                     # get substring from fd['tmtnum'] that is enclosed in parenthesis
-                    DCC.set_metadata(s,fd['handle'], Summary = docmod_docnum + ss)            
+                    DCC.set_metadata(s,fd['handle'], DCN = docmod_docnum + ss)            
             
         else: # there's no dcc_doc in the document module
             DCC.print_doc_basic(fd)
