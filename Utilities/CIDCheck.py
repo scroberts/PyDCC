@@ -14,10 +14,11 @@ import CID
 #       "outroot"_CID.txt, "outoot"_doc_list.txt, "outroot"_ver_list.txt
 #   These files will be located in dirpath that the user has set
 
-dirpath = r'/Users/paulb/Documents/TMT/Python/Reports/'
+# dirpath = r'/Users/paulb/Documents/TMT/Python/Reports/'
+dirpath = r'C:/Users/Josh Church/Documents/pyDCC/outputs/'
 CID_coll = 'Collection-10669'
-htmlfile = 'Test for collection 10669.html'
-outroot = 'STRCID_'
+htmlfile = 'ReportsListing of STR CID.html'
+outroot = 'CHECK123_'
 
 # This calls the function in CID.py, documentation for this code is included under the Library script CID.py
 CID.make_cid(dirpath, CID_coll, htmlfile, outroot)

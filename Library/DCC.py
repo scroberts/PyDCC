@@ -305,9 +305,9 @@ def prop_get(s, handle, **kwargs):
 
     headers = {"DocuShare-Version":"5.0", "Content-Type":"text/xml", "Accept":"text/xml"}
     infoDic = { 'Children' : '<children/>',
-                'CollCont' : '<title/><summary/><entityowner/><getlastmodified/>',    
-                'CollData' : '<title/><summary/><keywords/><entityowner/><getlastmodified/>',
-                'DocBasic':'<author/><handle/><document/><getlastmodified/><size/><summary/><entityowner/><keywords/>',
+                'CollCont' : '<title/><summary/><DCN/><entityowner/><getlastmodified/>',    
+                'CollData' : '<title/><summary/><DCN/><keywords/><entityowner/><getlastmodified/>',
+                'DocBasic':'<author/><handle/><document/><getlastmodified/><size/><summary/><DCN/><entityowner/><keywords/>',
                 'DocDate': '<getlastmodified/>',
                 'Group': '<entityowner/><handle/><parents/><children/>',
                 'Parents': '<parents/>',
@@ -325,6 +325,8 @@ def prop_get(s, handle, **kwargs):
     depth = kwargs.get('Depth','0') 
     headers['Depth'] = depth
     printFlag = kwargs.get('Print', False)
+    
+
     
     if infoSet == 'CollCont':
         fRoot = handle + '_' + infoSet + depth
@@ -359,6 +361,7 @@ def prop_get(s, handle, **kwargs):
     if printFlag: 
         prop_print(infoSet,fd)
         
+
     return(fd)
     
 def prop_print(infoSet, fd):
@@ -582,27 +585,32 @@ def read_coll_data(dom):
 def read_doc_basic_data(dom):
     fd = {}
     # take care of & in html to not interpret as an escape character
-    str = dom.displayname.text.replace('&','&amp;')
-    fd['title'] = strip_html(str)
-    fd['handle'] = get_handle(dom.handle.dsref['handle'])
-    fd['tmtnum'] = dom.summary.text
-    fd['summary'] = dom.summary.text
-    fd['filename'] = dom.document.text
-    fd['date'] = dom.getlastmodified.text
-    fd['owner-name'] = dom.entityowner.displayname.text
-    fd['owner-username'] = dom.entityowner.username.text
-    fd['owner-userid'] = dom.entityowner.dsref['handle']
-    fd['author'] = dom.author.text
-    fd['keywords'] = dom.keywords.text
-    fd['size'] = int(dom.size.text)
-    return(fd)
+    if dom.displayname is None:
+        return("ERROR-Object not found in DCC")
+    else:
+        str = dom.displayname.text.replace('&','&amp;')
+        fd['title'] = strip_html(str)
+        fd['handle'] = get_handle(dom.handle.dsref['handle'])
+        # fd['tmtnum'] = dom.summary.text
+        fd['tmtnum'] = dom.dcn.text
+        fd['summary'] = dom.summary.text
+        fd['filename'] = dom.document.text
+        fd['date'] = dom.getlastmodified.text
+        fd['owner-name'] = dom.entityowner.displayname.text
+        fd['owner-username'] = dom.entityowner.username.text
+        fd['owner-userid'] = dom.entityowner.dsref['handle']
+        fd['author'] = dom.author.text
+        fd['keywords'] = dom.keywords.text
+        fd['size'] = int(dom.size.text)
+        return(fd)
 
 def read_doc_data(dom):
     # fill in file data dictionary
     fd = {}
     fd['title'] = strip_html(dom.displayname.text)
     fd['handle'] = get_handle(dom.href.text)
-    fd['tmtnum'] = dom.summary.text
+    # fd['tmtnum'] = dom.summary.text
+    fd['tmtnum'] = dom.dcn.text
     fd['summary'] = dom.summary.text
     fd['filename'] = dom.webdav_title.text
     fd['owner-name'] = dom.entityowner.displayname.text
@@ -980,7 +988,7 @@ def user_search(s, **kwargs):
         ud['last_name'] = res.last_name.text
         ud['email'] = res.email.text
         ud['phone'] = res.phone.text
-        
+
         ulist.append(ud)
     return(ulist)
     
