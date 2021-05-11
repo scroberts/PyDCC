@@ -944,7 +944,7 @@ def user_search(s, **kwargs):
     headers = {"DocuShare-Version":"5.0", "Content-Type":"text/xml", "Accept":"text/xml"}
     
     xml1 = '''<searchrequest><simplesearch><select><prop>''' \
-        '''<username/><first_name/><last_name/><email/><mailstop/><phone/>''' \
+        '''<username/><first_name/><last_name/><email/><mailstop/><phone/><isActive/>''' \
         '''</prop></select>'''
 
     if 'email' in kwargs:
@@ -988,7 +988,8 @@ def user_search(s, **kwargs):
         ud['last_name'] = res.last_name.text
         ud['email'] = res.email.text
         ud['phone'] = res.phone.text
-
+        ud['isactive'] = res.isactive.text
+        
         ulist.append(ud)
     return(ulist)
     
